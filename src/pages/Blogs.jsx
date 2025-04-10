@@ -3,7 +3,7 @@ import { useLoaderData, Link } from "react-router-dom";
 import Blog from "../components/Blog";
 
 const Blogs = () => {
-  const [loadMore, setLoadMore] = useState(false);
+  const [show, setShow] = useState(false);
   const blogs = useLoaderData();
 
   return (
@@ -30,7 +30,7 @@ const Blogs = () => {
           </div>
         </Link>
         <div className="grid justify-center grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {loadMore
+          {show
             ? blogs
                 .slice(1, 30)
                 ?.map((blog) => <Blog key={blog.id} blog={blog}></Blog>)
@@ -39,17 +39,23 @@ const Blogs = () => {
                 ?.map((blog) => <Blog key={blog.id} blog={blog}></Blog>)}
         </div>
         <div className="flex justify-center">
-          <button
-            onClick={() => setLoadMore(true)}
-            type="button"
-            className={
-              loadMore
-                ? "hidden"
-                : "px-6 py-3  rounded-md hover:underline dark:bg-gray-50 dark:text-gray-600 font-bold"
-            }
-          >
-            Load more posts...
-          </button>
+          {show ? (
+            <button
+              onClick={() => setShow(false)}
+              type="button"
+              className="px-6 py-3  rounded-md hover:underline dark:bg-gray-50 dark:text-gray-600 font-bold"
+            >
+              Show less
+            </button>
+          ) : (
+            <button
+              onClick={() => setShow(true)}
+              type="button"
+              className="px-6 py-3  rounded-md hover:underline dark:bg-gray-50 dark:text-gray-600 font-bold"
+            >
+              Show more...
+            </button>
+          )}
         </div>
       </div>
     </section>
