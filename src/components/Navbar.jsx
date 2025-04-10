@@ -15,7 +15,7 @@ const Navbar = () => {
   return (
     <div className="navbar bg-base-100 shadow-md">
       <div className="flex-1">
-        <a className="btn btn-ghost text-xl text-secondary gap-0">
+        <a className="btn btn-ghost text-2xl text-secondary gap-0 font-bold">
           Byte <span className="text-primary">Blaze</span>
         </a>
       </div>
