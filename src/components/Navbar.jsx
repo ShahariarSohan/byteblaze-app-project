@@ -30,7 +30,7 @@ const Navbar = () => {
             Home
           </NavLink>
           <NavLink
-            to="/Blog"
+            to="/blogs"
             className={({ isActive }) =>
               isActive ? "text-primary font-bold" : "font-bold"
             }
@@ -38,7 +38,7 @@ const Navbar = () => {
             Blogs
           </NavLink>
           <NavLink
-            to="/Bookmark"
+            to="/bookmarks"
             className={({ isActive }) =>
               isActive ? "text-primary font-bold" : "font-bold"
             }

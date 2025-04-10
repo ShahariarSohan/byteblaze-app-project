@@ -16,11 +16,12 @@ const router = createBrowserRouter([
         element: <Home></Home>,
       },
       {
-        path: "/blog",
+        path: "/blogs",
         element: <Blogs></Blogs>,
+        loader: () => fetch("https://dev.to/api/articles"),
       },
       {
-        path: "/bookmark",
+        path: "/bookmarks",
         element: <Bookmarks></Bookmarks>,
       },
     ],
