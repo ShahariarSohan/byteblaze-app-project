@@ -2,9 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { MdDeleteForever } from "react-icons/md";
-import { handleDelete } from "../Utils/LocalStorage";
 
-const Bookmark = ({ bookmark }) => {
+const Bookmark = ({ bookmark, handleDelete }) => {
   const { id, title, description, cover_image, readable_publish_date } =
     bookmark;
   return (
