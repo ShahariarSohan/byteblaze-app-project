@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 import Markdown from "react-markdown";
 import rehypeRaw from "rehype-raw";
 
-const Content = ({ details }) => {
-  const { title, tags, cover_image, body_html, body_markdown, url } = details;
+const Content = ({ blog }) => {
+  const { title, tags, cover_image, body_html, body_markdown, url } = blog;
   return (
     <div>
       <div className="dark:text-gray-800">

@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 
 const Blog = ({ blog }) => {
   const { id, title, description, cover_image, readable_publish_date } = blog;
-
   return (
     <div className="border-2   hover:border-secondary translate-2 duration-200">
       <Link

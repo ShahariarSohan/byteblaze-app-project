@@ -1,8 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const Author = ({ details }) => {
-  const { user } = details;
+const Author = ({ blog }) => {
+  const { user } = blog;
   const {
     name,
     username,
