@@ -1,11 +1,15 @@
-import React from "react";
-import Markdown from "react-markdown";
+import React, { useState } from "react";
+
 import { Link, useLoaderData } from "react-router-dom";
-import rehypeRaw from "rehype-raw";
+import { MdBookmarkAdd } from "react-icons/md";
 import { IoBookmarkOutline } from "react-icons/io5";
 import { FaBookOpen } from "react-icons/fa";
+import Content from "./Content";
+import Author from "./Author";
+import Bookmarks from "../pages/Bookmarks";
 
 const BlogDetails = () => {
+  const [show, setShow] = useState(1);
   const details = useLoaderData();
   const {
     id,
@@ -39,43 +43,51 @@ const BlogDetails = () => {
             </p>
           </div>
         </div>
-        <div className="flex gap-4">
-          <Link to={`/blogs/${id}`}>
-            <div className="flex font-bold items-center gap-2">
-              <IoBookmarkOutline className=" text-xl font-bold"></IoBookmarkOutline>
-              Content
-            </div>
-          </Link>
-          <Link to="author">
-            <div className="flex font-bold items-center gap-2">
-              <FaBookOpen className=" text-xl font-bold"></FaBookOpen>
-              Author
-            </div>
-          </Link>
-        </div>
-        <div className="dark:text-gray-800">
-          <img src={cover_image} alt="" className="rounded-md" />
+        <div className="flex gap-4  items-center">
+          <div className="flex">
+            <Link to={`/blogs/${id}`}>
+              <div
+                onClick={() => setShow(1)}
+                className={
+                  show === 1
+                    ? "flex font-bold items-center gap-2  border-t border-r border-l p-2"
+                    : "flex font-bold items-center gap-2 border-b  p-2"
+                }
+              >
+                <IoBookmarkOutline className=" text-xl font-bold"></IoBookmarkOutline>
+                Content
+              </div>
+            </Link>
+            <Link to="author">
+              <div
+                onClick={() => setShow(2)}
+                className={
+                  show === 2
+                    ? "flex font-bold items-center gap-2  border-t border-r border-l p-2"
+                    : "flex font-bold items-center gap-2 border-b  p-2"
+                }
+              >
+                <FaBookOpen className="flex justify-around text-xl font-bold"></FaBookOpen>
+                Author
+              </div>
+            </Link>
+          </div>
+          <div
+            className="rounded-full p-2 bg-red-200 hover:shadow-md"
+            onClick={() => setShow(3)}
+          >
+            <MdBookmarkAdd className="font-bold text-2xl text-secondary"></MdBookmarkAdd>
+          </div>
         </div>
       </article>
-      <div>
-        <div className="flex flex-wrap py-6 gap-3 border-t border-dashed dark:border-gray-600">
-          {tags.map((tag, idx) => (
-            <a className="hover:underline" tag={tag} key={idx}>
-              {"#"}
-              {tag}
-            </a>
-          ))}
-        </div>
-        <Link to={url}>
-          <h1 className="text-3xl font-bold  hover:underline focus:underline ">
-            {title}
-          </h1>
-        </Link>
-        <div className="space-y-2">
-          <Markdown rehypePlugins={rehypeRaw}>{body_html}</Markdown>
-          <Markdown>{body_markdown}</Markdown>
-        </div>
-      </div>
+
+      {show === 1 ? (
+        <Content details={details}></Content>
+      ) : show === 2 ? (
+        <Author details={details}></Author>
+      ) : (
+        <Bookmarks details={details}></Bookmarks>
+      )}
     </div>
   );
 };

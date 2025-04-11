@@ -6,6 +6,7 @@ import Blogs from "../pages/Blogs";
 import Bookmarks from "../pages/Bookmarks";
 import BlogDetails from "../components/BlogDetails";
 import Author from "../components/Author";
+import Content from "../components/Content";
 
 const router = createBrowserRouter([
   {
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
         loader: ({ params }) =>
           fetch(`https://dev.to/api/articles/${params.id}`),
         children: [
+          {
+            path: "/blogs/:id",
+            element: <Content></Content>,
+          },
           {
             path: "author",
             element: <Author></Author>,
