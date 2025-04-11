@@ -72,10 +72,7 @@ const BlogDetails = () => {
               </div>
             </Link>
           </div>
-          <div
-            className="rounded-full p-2 bg-red-200 hover:shadow-md"
-            onClick={() => setShow(3)}
-          >
+          <div className="rounded-full p-2 bg-red-200 hover:shadow-md">
             <MdBookmarkAdd className="font-bold text-2xl text-secondary"></MdBookmarkAdd>
           </div>
         </div>
@@ -83,10 +80,8 @@ const BlogDetails = () => {
 
       {show === 1 ? (
         <Content details={details}></Content>
-      ) : show === 2 ? (
-        <Author details={details}></Author>
       ) : (
-        <Bookmarks details={details}></Bookmarks>
+        <Author details={details}></Author>
       )}
     </div>
   );
