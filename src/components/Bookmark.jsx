@@ -1,12 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+import { MdDeleteForever } from "react-icons/md";
+import { handleDelete } from "../Utils/LocalStorage";
 
 const Bookmark = ({ bookmark }) => {
   const { id, title, description, cover_image, readable_publish_date } =
     bookmark;
   return (
-    <div className="border-2 hover:border-secondary translate-2 duration-200">
+    <div className=" border-2 hover:border-secondary translate-2 duration-200 p-5">
       <Link
         to={`/blogs/${id}`}
         rel="noopener noreferrer"
@@ -36,6 +38,14 @@ const Bookmark = ({ bookmark }) => {
           <p>{description}</p>
         </div>
       </Link>
+      <div className="flex justify-center">
+        <MdDeleteForever
+          onClick={() => handleDelete(id)}
+          className="text-4xl text-secondary"
+        >
+          Delete
+        </MdDeleteForever>
+      </div>
     </div>
   );
 };

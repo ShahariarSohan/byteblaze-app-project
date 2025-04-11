@@ -14,4 +14,9 @@ const storeBookmarks = bookmark => {
     localStorage.setItem("bookmarks", JSON.stringify(bookmarks))
 }
 
-export { getBookmarks, storeBookmarks }
+const handleDelete = id => {
+    const bookmarks = getBookmarks();
+    const filteredBookmarks = bookmarks.filter((bookmark) => (bookmark.id !== id))
+    localStorage.setItem("bookmarks", JSON.stringify(filteredBookmarks))
+}
+export { getBookmarks, storeBookmarks, handleDelete }

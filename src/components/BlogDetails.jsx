@@ -12,7 +12,8 @@ import { PropagateLoader } from "react-spinners";
 const BlogDetails = () => {
   const [show, setShow] = useState(1);
   const navigation = useNavigation();
-  const [bookmarks, setBookmarks] = useState(getBookmarks());
+  const [bookmarks, setBookmarks] = useState([]);
+
   const blog = useLoaderData();
   const {
     id,
@@ -22,6 +23,7 @@ const BlogDetails = () => {
     comments_count,
     public_reactions_count,
   } = blog;
+
   const handleBookmark = (blog) => {
     const isExist = bookmarks?.find((bookmark) => bookmark.id === id);
     if (!isExist) {
