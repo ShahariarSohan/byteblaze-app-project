@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
 import { Link, useLoaderData, useNavigation } from "react-router-dom";
 import { MdBookmarkAdd } from "react-icons/md";
 import { IoBookmarkOutline } from "react-icons/io5";
 import { FaBookOpen } from "react-icons/fa";
 import Content from "./Content";
 import Author from "./Author";
-import Bookmarks from "../pages/Bookmarks";
 import toast from "react-hot-toast";
 import { getBookmarks, storeBookmarks } from "../Utils/LocalStorage";
 import { PropagateLoader } from "react-spinners";
@@ -14,22 +13,16 @@ const BlogDetails = () => {
   const [show, setShow] = useState(1);
   const navigation = useNavigation();
   const [bookmarks, setBookmarks] = useState(getBookmarks());
-
   const blog = useLoaderData();
   const {
     id,
     title,
     reading_time_minutes,
     readable_publish_date,
-    tags,
-    cover_image,
     comments_count,
     public_reactions_count,
-    body_html,
-    body_markdown,
-    url,
   } = blog;
-  const handleBookmark = () => {
+  const handleBookmark = (blog) => {
     const isExist = bookmarks?.find((bookmark) => bookmark.id === id);
     if (!isExist) {
       storeBookmarks(blog);
@@ -39,7 +32,6 @@ const BlogDetails = () => {
       return toast.error("Bookmark already Exist");
     }
   };
-  console.log(bookmarks);
   if (navigation.state === "loading") {
     return (
       <div className="min-h-[calc(100vh-116px)] flex justify-center items-center">
@@ -96,7 +88,7 @@ const BlogDetails = () => {
               </Link>
             </div>
             <div
-              onClick={handleBookmark}
+              onClick={() => handleBookmark(blog)}
               className="rounded-full p-2 bg-red-200 hover:shadow-md"
             >
               <MdBookmarkAdd className="font-bold text-2xl text-secondary"></MdBookmarkAdd>
